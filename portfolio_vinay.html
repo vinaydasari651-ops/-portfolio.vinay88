@@ -1,0 +1,394 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0d0d0d;--ink2:#3a3a3a;--ink3:#777;
+  --paper:#f5f3ef;--paper2:#eceae4;--paper3:#e2dfd8;
+  --java:#f89820;--java2:#e07b00;
+  --spring:#6db33f;--spring2:#4a8f28;
+  --nl:#185fa5;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Outfit',sans-serif;
+  --display:'Syne',sans-serif;
+  --r:8px;--rl:14px;
+}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:15px;line-height:1.6}
+
+nav{background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:52px}
+.nav-brand{font-family:var(--mono);font-size:13px;color:var(--java);letter-spacing:0.05em}
+.nav-links{display:flex;gap:1.75rem}
+.nav-links a{color:#999;text-decoration:none;font-size:13px;font-family:var(--mono);letter-spacing:0.03em;transition:color 0.2s}
+.nav-links a:hover{color:var(--java)}
+
+.hero{background:var(--ink);padding:5rem 2.5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero-left{}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:#1a1a1a;border:0.5px solid #333;border-radius:100px;padding:5px 14px;font-family:var(--mono);font-size:11px;color:#666;letter-spacing:0.08em;margin-bottom:1.5rem}
+.hero-badge span{width:7px;height:7px;border-radius:50%;background:var(--spring);display:inline-block}
+h1{font-family:var(--display);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:800;line-height:1.05;color:#fff;margin-bottom:1rem}
+h1 em{font-style:normal;color:var(--java)}
+.hero-sub{color:#888;font-size:15px;line-height:1.8;margin-bottom:2rem;max-width:420px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:12px;letter-spacing:0.06em;padding:10px 20px;border-radius:var(--r);cursor:pointer;text-decoration:none;border:none;transition:all 0.18s}
+.btn-java{background:var(--java);color:var(--ink);font-weight:500}
+.btn-java:hover{background:var(--java2)}
+.btn-outline{background:transparent;color:#bbb;border:0.5px solid #444}
+.btn-outline:hover{border-color:#888;color:#fff}
+
+.hero-right{display:flex;flex-direction:column;gap:12px}
+.code-card{background:#141414;border:0.5px solid #2a2a2a;border-radius:var(--rl);overflow:hidden}
+.code-bar{background:#1e1e1e;padding:10px 14px;display:flex;align-items:center;gap:8px}
+.code-dot{width:10px;height:10px;border-radius:50%}
+.code-filename{font-family:var(--mono);font-size:11px;color:#555;margin-left:6px}
+.code-body{padding:1rem 1.25rem;font-family:var(--mono);font-size:12px;line-height:1.9}
+.c-kw{color:#cc99cd}.c-cls{color:#f8c555}.c-fn{color:#6fb3d2}.c-str{color:#7ec699}.c-cmt{color:#555}.c-ann{color:#e9c46a}.c-num{color:#f89820}
+
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{background:#141414;border:0.5px solid #222;border-radius:var(--r);padding:1rem;text-align:center}
+.stat-n{font-family:var(--display);font-size:1.8rem;font-weight:800;color:var(--java);display:block}
+.stat-l{font-size:11px;color:#555;font-family:var(--mono);letter-spacing:0.05em;margin-top:2px}
+
+section{padding:4.5rem 2.5rem}
+.sec-header{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--java);letter-spacing:0.1em}
+.sec-title{font-family:var(--display);font-size:1.8rem;font-weight:800;color:var(--ink)}
+.sec-line{flex:1;height:0.5px;background:var(--paper3)}
+
+#about{background:var(--paper)}
+.about-grid{display:grid;grid-template-columns:3fr 2fr;gap:3rem;align-items:start}
+.about-text p{color:var(--ink2);line-height:1.8;margin-bottom:1rem}
+.about-text strong{color:var(--ink);font-weight:500}
+.about-chips{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:11px;letter-spacing:0.04em;padding:5px 11px;border-radius:100px;border:0.5px solid var(--paper3);color:var(--ink2);background:var(--paper2)}
+.edu-card{background:var(--paper2);border:0.5px solid var(--paper3);border-radius:var(--rl);padding:1.5rem}
+.edu-year{font-family:var(--mono);font-size:11px;color:var(--ink3);margin-bottom:0.5rem}
+.edu-deg{font-family:var(--display);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+.edu-inst{font-size:13px;color:var(--ink2);line-height:1.5}
+.edu-badge{display:inline-block;margin-top:10px;background:var(--spring2);color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;padding:3px 10px;border-radius:100px}
+
+#skills{background:var(--paper2)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+.skill-block{background:var(--paper);border:0.5px solid var(--paper3);border-radius:var(--rl);padding:1.25rem}
+.skill-icon{font-size:20px;margin-bottom:0.75rem}
+.skill-head{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--ink3);margin-bottom:0.75rem;text-transform:uppercase}
+.skill-tags{display:flex;flex-direction:column;gap:5px}
+.skill-tag{font-size:13px;color:var(--ink2);display:flex;align-items:center;gap:6px}
+.skill-tag::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--java);flex-shrink:0}
+
+#projects{background:var(--paper)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+.proj-card{background:var(--paper2);border:0.5px solid var(--paper3);border-radius:var(--rl);padding:1.5rem;transition:border-color 0.2s,transform 0.2s}
+.proj-card:hover{border-color:var(--java);transform:translateY(-2px)}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
+.proj-num{font-family:var(--mono);font-size:10px;color:var(--ink3);letter-spacing:0.1em}
+.proj-icon{width:36px;height:36px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:16px}
+.proj-icon.java-bg{background:#fff3dd;color:var(--java2)}
+.proj-icon.nlp-bg{background:#ddeeff;color:var(--nl)}
+.proj-icon.ai-bg{background:#ddffee;color:var(--spring2)}
+.proj-name{font-family:var(--display);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.5rem;line-height:1.3}
+.proj-desc{font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:1.1rem}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px}
+.ptag{font-family:var(--mono);font-size:10px;letter-spacing:0.04em;padding:3px 8px;border-radius:100px;color:var(--ink2);border:0.5px solid var(--paper3);background:var(--paper)}
+
+#contact{background:var(--ink);padding:5rem 2.5rem;text-align:center}
+#contact .sec-title{color:#fff}
+#contact .sec-line{background:#2a2a2a}
+#contact .sec-num{color:var(--java)}
+.contact-note{color:#888;font-size:15px;max-width:480px;margin:0 auto 2.5rem;line-height:1.8}
+.contact-cards{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.ccard{background:#141414;border:0.5px solid #252525;border-radius:var(--rl);padding:1.25rem 1.75rem;text-decoration:none;text-align:left;min-width:160px;transition:border-color 0.2s}
+.ccard:hover{border-color:#555}
+.ccard-label{font-family:var(--mono);font-size:10px;color:#555;letter-spacing:0.08em;margin-bottom:4px}
+.ccard-val{font-size:14px;color:#ccc;font-weight:500}
+
+footer{background:#0a0a0a;text-align:center;padding:1.5rem;font-family:var(--mono);font-size:11px;color:#444;letter-spacing:0.04em}
+
+@media(max-width:640px){
+  .hero{grid-template-columns:1fr;padding:3rem 1.25rem 2rem}
+  .hero-right{display:none}
+  section{padding:3rem 1.25rem}
+  .about-grid{grid-template-columns:1fr}
+}
+</style>
+
+<nav>
+  <span class="nav-brand">Vinay.java</span>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certificates">Certs</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge"><span></span>Open to work — fresher roles</div>
+    <h1>Java<br/>Web Dev<br/>& <em>AI Builder</em></h1>
+    <p class="hero-sub">B.Tech CSE (AI&ML) graduate building smart Java applications — REST APIs, NLP pipelines, and deep learning systems, all end-to-end.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-java">See Projects</a>
+      <a href="#contact" class="btn btn-outline">Hire Me</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="code-card">
+      <div class="code-bar">
+        <div class="code-dot" style="background:#ff5f57"></div>
+        <div class="code-dot" style="background:#febc2e"></div>
+        <div class="code-dot" style="background:#28c840"></div>
+        <span class="code-filename">PrescriptionService.java</span>
+      </div>
+      <div class="code-body">
+        <div><span class="c-ann">@Service</span></div>
+        <div><span class="c-kw">public class</span> <span class="c-cls">PrescriptionService</span> {</div>
+        <div style="padding-left:1rem"><span class="c-ann">@Autowired</span></div>
+        <div style="padding-left:1rem"><span class="c-kw">private</span> <span class="c-cls">AttentionModel</span> model;</div>
+        <div style="height:6px"></div>
+        <div style="padding-left:1rem"><span class="c-fn">recommend</span>(<span class="c-cls">EHRRecord</span> record) {</div>
+        <div style="padding-left:2rem"><span class="c-kw">var</span> context = model</div>
+        <div style="padding-left:3rem">.<span class="c-fn">attend</span>(record.<span class="c-fn">getHistory</span>())</div>
+        <div style="padding-left:3rem">.<span class="c-fn">predict</span>(<span class="c-num">0.85f</span>);</div>
+        <div style="padding-left:2rem"><span class="c-kw">return</span> <span class="c-cls">Prescription</span></div>
+        <div style="padding-left:3rem">.<span class="c-fn">from</span>(context);</div>
+        <div style="padding-left:1rem">}</div>
+        <div>}</div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-n">2</span><div class="stat-l">PROJECTS</div></div>
+      <div class="stat"><span class="stat-n">Java</span><div class="stat-l">PRIMARY</div></div>
+      <div class="stat"><span class="stat-n">2026</span><div class="stat-l">BATCH</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="sec-header">
+    <span class="sec-num">01</span>
+    <div class="sec-title">About me</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm <strong>Vinay</strong>, a B.Tech Computer Science (AI & ML) graduate from <strong>PBR Visvodaya Institute of Technology & Science</strong>, batch of 2026. I build backend-heavy Java applications with intelligent capabilities baked in.</p>
+      <p>My sweet spot is where <strong>Java web development meets AI/ML</strong> — whether that's wiring up a Spring Boot REST API, building an NLP pipeline with Stanford CoreNLP, or training attention-based models with DeepLearning4J.</p>
+      <p>I'm actively targeting <strong>fresher Java developer roles</strong> — full-time positions where I can ship real software, grow fast, and work with strong engineering teams.</p>
+      <div class="about-chips">
+        <span class="chip">Problem solver</span>
+        <span class="chip">Clean code advocate</span>
+        <span class="chip">AI-ML enthusiast</span>
+        <span class="chip">Fast learner</span>
+        <span class="chip">Team player</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2022 – 2026</div>
+      <div class="edu-deg">B.Tech Computer Science</div>
+      <div class="edu-inst">Specialisation: Artificial Intelligence & Machine Learning<br/><br/>PBR Visvodaya Institute of Technology & Science</div>
+      <span class="edu-badge">Graduating 2026</span>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sec-header">
+    <span class="sec-num">02</span>
+    <div class="sec-title">Tech stack</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <div class="skill-icon">☕</div>
+      <div class="skill-head">Core Java</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Java 17+</span>
+        <span class="skill-tag">OOP & SOLID</span>
+        <span class="skill-tag">Collections</span>
+        <span class="skill-tag">Multithreading</span>
+        <span class="skill-tag">Exception handling</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon"><i class="ti ti-api" aria-hidden="true"></i></div>
+      <div class="skill-head">Backend & Web</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Spring Boot</span>
+        <span class="skill-tag">Spring MVC</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">Maven</span>
+        <span class="skill-tag">Java Swing</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon"><i class="ti ti-database" aria-hidden="true"></i></div>
+      <div class="skill-head">Database</div>
+      <div class="skill-tags">
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">JDBC</span>
+        <span class="skill-tag">JPA / Hibernate</span>
+        <span class="skill-tag">SQL queries</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon"><i class="ti ti-brain" aria-hidden="true"></i></div>
+      <div class="skill-head">AI in Java</div>
+      <div class="skill-tags">
+        <span class="skill-tag">DeepLearning4J</span>
+        <span class="skill-tag">Stanford CoreNLP</span>
+        <span class="skill-tag">Attention models</span>
+        <span class="skill-tag">EHR pipelines</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon"><i class="ti ti-tools" aria-hidden="true"></i></div>
+      <div class="skill-head">Dev tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git & GitHub</span>
+        <span class="skill-tag">IntelliJ IDEA</span>
+        <span class="skill-tag">Eclipse</span>
+        <span class="skill-tag">Postman</span>
+        <span class="skill-tag">Linux Bash</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon"><i class="ti ti-code" aria-hidden="true"></i></div>
+      <div class="skill-head">Other</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python (scripting)</span>
+        <span class="skill-tag">Agile basics</span>
+        <span class="skill-tag">Data structures</span>
+        <span class="skill-tag">Algorithms</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sec-header">
+    <span class="sec-num">03</span>
+    <div class="sec-title">Projects</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-top">
+        <span class="proj-num">01 · FLAGSHIP</span>
+        <div class="proj-icon ai-bg"><i class="ti ti-heart-rate-monitor" aria-hidden="true"></i></div>
+      </div>
+      <div class="proj-name">Personalised Prescription Recommendation System</div>
+      <p class="proj-desc">Attention-based deep learning over Electronic Health Records. Multi-head attention on temporal patient data to predict personalised medication suitability — built end-to-end in Java.</p>
+      <div class="proj-tags">
+        <span class="ptag">Java</span>
+        <span class="ptag">DeepLearning4J</span>
+        <span class="ptag">Attention Mechanism</span>
+        <span class="ptag">EHR Data</span>
+        <span class="ptag">Healthcare AI</span>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top">
+        <span class="proj-num">02 · NLP TOOL</span>
+        <div class="proj-icon nlp-bg"><i class="ti ti-message-language" aria-hidden="true"></i></div>
+      </div>
+      <div class="proj-name">Text-to-SQL NLP Engine</div>
+      <p class="proj-desc">Java NLP pipeline that converts plain English queries into structured SQL using Stanford CoreNLP. Handles joins, filters, and aggregations — enabling non-technical users to query databases naturally.</p>
+      <div class="proj-tags">
+        <span class="ptag">Java</span>
+        <span class="ptag">Stanford CoreNLP</span>
+        <span class="ptag">MySQL</span>
+        <span class="ptag">NLP</span>
+        <span class="ptag">Query generation</span>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top">
+        <span class="proj-num">03 · TOOLING</span>
+        <div class="proj-icon java-bg"><i class="ti ti-terminal-2" aria-hidden="true"></i></div>
+      </div>
+      <div class="proj-name">Dev Environment Automation Script</div>
+      <p class="proj-desc">Bash + Git automation that bootstraps a full dev workspace from scratch — SSH keys, repo initialisation, global Git config, and remote origin setup in a single run.</p>
+      <div class="proj-tags">
+        <span class="ptag">Bash</span>
+        <span class="ptag">Git</span>
+        <span class="ptag">Linux</span>
+        <span class="ptag">DevOps</span>
+        <span class="ptag">Automation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+#certificates{background:var(--paper2)}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.cert-card{background:var(--paper);border:0.5px solid var(--paper3);border-radius:var(--rl);padding:1.4rem;display:flex;flex-direction:column;gap:0.6rem;transition:border-color 0.2s,transform 0.2s}
+.cert-card:hover{border-color:var(--java);transform:translateY(-2px)}
+.cert-issuer{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--ink3);text-transform:uppercase}
+.cert-name{font-family:var(--display);font-size:0.98rem;font-weight:700;color:var(--ink);line-height:1.3}
+.cert-meta{font-size:12px;color:var(--ink3)}
+.cert-badge{display:inline-block;margin-top:4px;background:var(--java);color:var(--ink);font-family:var(--mono);font-size:10px;letter-spacing:0.05em;padding:3px 10px;border-radius:100px;font-weight:500;align-self:flex-start}
+.cert-badge.green{background:var(--spring);color:#fff}
+.cert-badge.blue{background:var(--nl);color:#fff}
+</style>
+
+<section id="certificates">
+  <div class="sec-header">
+    <span class="sec-num">04</span>
+    <div class="sec-title">Certificates & Internships</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-issuer">BrainOvision Solutions Pvt. Ltd. · AICTE</div>
+      <div class="cert-name">Full Stack Java Internship</div>
+      <div class="cert-meta">May 2025 – Jun 2025 · 6 Weeks · Intern ID: BV25FSJ233</div>
+      <span class="cert-badge">Internship</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Deeksha Technologies</div>
+      <div class="cert-name">Python · AI & ML Internship</div>
+      <div class="cert-meta">Dec 2025 – Mar 2026 · 12 Weeks · Sl No: AS-VIR-188</div>
+      <span class="cert-badge">Internship</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Deloitte · via Forage</div>
+      <div class="cert-name">Cyber Job Simulation</div>
+      <div class="cert-meta">January 2026 · Practical tasks in Cyber Security</div>
+      <span class="cert-badge blue">Simulation</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Analytics Vidhya</div>
+      <div class="cert-name">Introduction to Python</div>
+      <div class="cert-meta">July 2025 · Cert ID: hp7qxfcvph</div>
+      <span class="cert-badge green">Course</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-header" style="justify-content:center;border-bottom:none">
+    <span class="sec-num">05</span>
+    <div class="sec-title">Get in touch</div>
+  </div>
+  <p class="contact-note">I'm actively looking for fresher Java developer roles. If you have an opportunity or want to connect, reach out — I respond fast.</p>
+  <div style="margin-bottom:2rem">
+    <a href="mailto:vinaykumardasari088@gmail.com" class="btn btn-java">Send a message</a>
+  </div>
+  <div class="contact-cards">
+    <a href="https://www.linkedin.com/in/Vanity" class="ccard" target="_blank">
+      <div class="ccard-label">LINKEDIN</div>
+      <div class="ccard-val">in/Vanity</div>
+    </a>
+    <a href="https://github.com/vinaydasari651-ops" class="ccard" target="_blank">
+      <div class="ccard-label">GITHUB</div>
+      <div class="ccard-val">github.com/vinaydasari651-ops</div>
+    </a>
+    <a href="mailto:vinaykumardasari088@gmail.com" class="ccard">
+      <div class="ccard-label">EMAIL</div>
+      <div class="ccard-val">vinaykumardasari088@gmail.com</div>
+    </a>
+  </div>
+</section>
+
+<footer>Vinay · Java Developer · 2026 · Built with Java &amp; ☕</footer>
